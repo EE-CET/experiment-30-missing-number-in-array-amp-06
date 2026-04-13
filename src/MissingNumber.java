@@ -1,9 +1,32 @@
+import java.util.Scanner;
+
 public class MissingNumber {
-   
-        // TODO: Read n
-        // TODO: Calculate the expected sum of numbers from 0 to n: (n * (n + 1)) / 2
-        // TODO: Read n integers and calculate the actual sum of the array elements
-        // TODO: The missing number is (expectedSum - actualSum)
-        // TODO: Print the result
-    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        int missing = n;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != i) {
+                missing = i;
+                break;
+            }
+        }
+
+        System.out.println(missing);
+    }
 }
